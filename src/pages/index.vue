@@ -33,23 +33,6 @@ interface Segment {
   y: number
 }
 
-const downloadChannels = [
-  {
-    id: 'app-store',
-    eyebrow: 'Download on the',
-    title: 'App Store',
-    href: '#app-store',
-    icon: 'phone_iphone',
-  },
-  {
-    id: 'google-play',
-    eyebrow: 'Get it on',
-    title: 'Google Play',
-    href: '#google-play',
-    icon: 'android',
-  },
-]
-
 const stats = [
   { id: 'players', value: '10M+', label: '全球指划玩家' },
   { id: 'rating', value: '4.9', label: '平均评分' },
@@ -211,8 +194,7 @@ class Snake {
       const jitterY = (Math.random() - 0.5) * 6
       if (i === 0)
         ctx.moveTo(segment.x + jitterX, segment.y + jitterY)
-      else
-        ctx.lineTo(segment.x + jitterX, segment.y + jitterY)
+      else ctx.lineTo(segment.x + jitterX, segment.y + jitterY)
     }
     ctx.globalAlpha = 0.6
     ctx.stroke()
@@ -222,8 +204,14 @@ class Snake {
       const segment = this.segments[i]
       const perpendicular = this.angle + Math.PI / 2
       const size = 6
-      ctx.moveTo(segment.x - Math.cos(perpendicular) * size, segment.y - Math.sin(perpendicular) * size)
-      ctx.lineTo(segment.x + Math.cos(perpendicular) * size, segment.y + Math.sin(perpendicular) * size)
+      ctx.moveTo(
+        segment.x - Math.cos(perpendicular) * size,
+        segment.y - Math.sin(perpendicular) * size,
+      )
+      ctx.lineTo(
+        segment.x + Math.cos(perpendicular) * size,
+        segment.y + Math.sin(perpendicular) * size,
+      )
     }
     ctx.globalAlpha = 0.4
     ctx.stroke()
@@ -233,7 +221,13 @@ class Snake {
     this.drawSketchyCircle(ctx, head.x, head.y, 10, '#fff')
   }
 
-  private drawSketchyCircle(ctx: CanvasRenderingContext2D, x: number, y: number, radius: number, color: string) {
+  private drawSketchyCircle(
+    ctx: CanvasRenderingContext2D,
+    x: number,
+    y: number,
+    radius: number,
+    color: string,
+  ) {
     ctx.save()
     ctx.strokeStyle = color
     ctx.lineWidth = 2
@@ -245,8 +239,7 @@ class Snake {
       const py = y + Math.sin(angle) * rad
       if (i === 0)
         ctx.moveTo(px, py)
-      else
-        ctx.lineTo(px, py)
+      else ctx.lineTo(px, py)
     }
     ctx.closePath()
     ctx.stroke()
@@ -275,8 +268,7 @@ class Grid {
         }
         if (y === 0)
           ctx.moveTo(x + dx, y)
-        else
-          ctx.lineTo(x + dx, y)
+        else ctx.lineTo(x + dx, y)
       }
       ctx.stroke()
     }
@@ -292,8 +284,7 @@ class Grid {
         }
         if (x === 0)
           ctx.moveTo(x, y + dy)
-        else
-          ctx.lineTo(x, y + dy)
+        else ctx.lineTo(x, y + dy)
       }
       ctx.stroke()
     }
@@ -319,7 +310,10 @@ class Rune {
     this.size = Math.random() * 10 + 5
     this.speedY = Math.random() * 0.5 - 0.25
     this.speedX = Math.random() * 0.5 - 0.25
-    this.color = Math.random() > 0.5 ? this.scene.config.snakeColor : this.scene.config.secondaryColor
+    this.color
+      = Math.random() > 0.5
+        ? this.scene.config.snakeColor
+        : this.scene.config.secondaryColor
     this.rotation = Math.random() * Math.PI
   }
 
@@ -332,8 +326,14 @@ class Rune {
     if (dist < 50)
       this.reset()
 
-    if (this.x < 0 || this.x > this.scene.dims.w || this.y < 0 || this.y > this.scene.dims.h)
+    if (
+      this.x < 0
+      || this.x > this.scene.dims.w
+      || this.y < 0
+      || this.y > this.scene.dims.h
+    ) {
       this.reset()
+    }
   }
 
   draw(ctx: CanvasRenderingContext2D) {
@@ -390,32 +390,26 @@ class Rune {
 
         <p class="intro">
           <span class="highlight">蛇灵 SnakeSpirit</span> 把传统贪吃蛇撕得粉碎。
-          依托手势识别 AI 引擎，你只需在空气中勾勒线条，
-          就能驱动一条带有<span class="highlight">赛博墨迹</span>的灵蛇在无限画布中穿梭。
-          手感像写毛笔，速度却能冲进全球排行榜。
+          依托手势识别 AI 引擎，你只需在空气中勾勒线条， 就能驱动一条带有<span
+            class="highlight"
+          >赛博墨迹</span>的灵蛇在无限画布中穿梭。 手感像写毛笔，速度却能冲进全球排行榜。
         </p>
 
         <div id="download-area" class="cta-group">
           <div class="cta-halo" aria-hidden="true" />
+
           <a
-            v-for="channel in downloadChannels"
-            :key="channel.id"
-            :href="channel.href"
-            class="cta-card"
+            class="cta-card github-card"
+            href="https://github.com/pdfgame/Dual-modeSnakeGame/fork"
+            target="_blank"
+            rel="noreferrer"
           >
-            <span class="material-symbols-outlined cta-icon" aria-hidden="true">
-              {{ channel.icon }}
-            </span>
+            <span class="material-symbols-outlined cta-icon" aria-hidden="true">download</span>
             <div class="cta-copy">
-              <span class="cta-eyebrow">{{ channel.eyebrow }}</span>
-              <span class="cta-title">{{ channel.title }}</span>
+              <span class="cta-eyebrow">Download on</span>
+              <span class="cta-title">GitHub</span>
             </div>
             <span class="shine" aria-hidden="true" />
-          </a>
-
-          <a href="#web-demo" class="cta-primary">
-            <span class="material-symbols-outlined" aria-hidden="true">play_arrow</span>
-            WEB DEMO
           </a>
         </div>
 
@@ -661,7 +655,9 @@ meta:
   gap: 1.25rem;
   position: relative;
   width: 100%;
-  max-width: 640px;
+  max-width: 360px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .cta-halo {
@@ -677,15 +673,17 @@ meta:
   position: relative;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
+  gap: 1.25rem;
   width: 100%;
-  padding: 1.25rem 1.5rem;
+  padding: 1rem 1.25rem;
   border-radius: 1rem;
   border: 1px solid rgba(255, 255, 255, 0.08);
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(12px);
   text-align: left;
   overflow: hidden;
+  align-self: center;
   transition:
     transform 0.3s ease,
     border-color 0.3s ease,
@@ -707,7 +705,6 @@ meta:
   flex: 1;
   display: flex;
   flex-direction: column;
-  margin-left: 1.25rem;
 }
 
 .cta-eyebrow {
@@ -737,27 +734,13 @@ meta:
   transform: translateX(200%) skewX(-15deg);
 }
 
-.cta-primary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  padding: 1rem 2.5rem;
-  border-radius: 1rem;
-  background: #22c55e;
-  color: #050505;
-  font-weight: 900;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  box-shadow: 0 0 25px rgba(34, 197, 94, 0.45);
-  transition:
-    transform 0.3s ease,
-    background 0.3s ease;
+.github-card {
+  border-color: rgba(147, 197, 253, 0.4);
+  background: linear-gradient(120deg, rgba(255, 255, 255, 0.08), rgba(59, 130, 246, 0.1));
 }
 
-.cta-primary:hover {
-  transform: scale(1.05);
-  background: #4ade80;
+.github-card .cta-title {
+  letter-spacing: 0.15em;
 }
 
 .stats-grid {
@@ -866,19 +849,8 @@ meta:
   }
 
   .cta-group {
-    flex-direction: row;
-    align-items: stretch;
-  }
-
-  .cta-card {
-    flex: 1;
-  }
-
-  .cta-primary {
-    align-self: stretch;
-    display: inline-flex;
-    justify-content: center;
-    min-width: 180px;
+    flex-direction: column;
+    align-items: center;
   }
 }
 
