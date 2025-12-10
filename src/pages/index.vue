@@ -400,7 +400,7 @@ class Rune {
 
           <a
             class="cta-card github-card"
-            href="https://github.com/pdfgame/Dual-modeSnakeGame/fork"
+            href="https://github.com/pdfgame/Dual-modeSnakeGame"
             target="_blank"
             rel="noreferrer"
           >
