@@ -27,6 +27,7 @@ Mocking up web app with <b>Vitesse</b><sup><em>(speed)</em></sup><br>
 
 ## Snake Spirit 现状速记
 
+- 首页 ZIP 下载按钮直连 `/assets/download/Dual-mode Snake Game.zip`，不绕 GitHub，点一下就能把包拖回本地。
 - 新增 `/feedback` 页面，承接 GitHub Issue 与邮箱 `phasisx_pdf_pxf@163.com` 的反馈链路，视觉与首页保持同频。
 - 顶部导航包含「反馈」入口，可直接抵达该页面的核心内容区。
 - 「游戏详情」导航入口新增丝滑浮动高亮，兼顾沉浸感与易用性。

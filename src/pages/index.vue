@@ -389,7 +389,7 @@ class Rune {
             target="_blank"
             rel="noreferrer"
           >
-            <span class="material-symbols-outlined cta-icon" aria-hidden="true">download</span>
+            <span class="cta-icon material-symbols-outlined" aria-hidden="true">download</span>
             <div class="cta-copy">
               <span class="cta-eyebrow">Download on</span>
               <span class="cta-title">GitHub</span>
@@ -399,7 +399,7 @@ class Rune {
 
           <a
             class="cta-card zip-card"
-            href="https://github.com/pdfgame/Dual-modeSnakeGame"
+            href="/assets/download/Dual-mode%20Snake%20Game.zip"
             target="_blank"
             rel="noreferrer"
           >
