@@ -84,7 +84,7 @@ const quickTips = [
   font-family: 'Rajdhani', sans-serif;
   background: radial-gradient(circle at top, rgba(74, 222, 128, 0.15), transparent 45%), #050505;
   color: #fff;
-  padding: clamp(1.5rem, 5vw, 3.5rem);
+  padding: clamp(1.5rem, 8vw, 7.5rem);
   overflow: hidden;
   display: flex;
   flex-direction: column;

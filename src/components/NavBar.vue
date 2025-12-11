@@ -4,8 +4,8 @@ const route = useRoute()
 
 const navLinks = [
   { label: '下载渠道', to: { path: '/', hash: '#download-area' } },
-  { label: '排行榜', to: { path: '/leaderboard', hash: '#leaderboard' } },
-  { label: '反馈', to: { path: '/feedback', hash: '#feedback' } },
+  { label: '游戏详情', to: { path: '/details', hash: '#details' } },
+  { label: '提交反馈', to: { path: '/feedback', hash: '#feedback' } },
   { label: '特别感谢', to: '/special-thanks', hash: '#special-thanks' },
 ]
 
@@ -42,6 +42,7 @@ function isActive(link: { to: string | { path: string } }) {
           :key="link.label"
           :to="link.to"
           :class="{ active: isActive(link) }"
+          :data-floating="link.label === '游戏详情' ? 'true' : null"
         >
           {{ link.label }}
         </RouterLink>
@@ -113,6 +114,40 @@ function isActive(link: { to: string | { path: string } }) {
   transition: color 0.3s ease;
 }
 
+.nav-links a[data-floating='true'] {
+  position: relative;
+  padding: 0.2rem 0.25rem;
+  color: #f8fafc;
+  text-shadow: 0 3px 10px rgba(26, 255, 167, 0.35);
+  isolation: isolate;
+}
+
+.nav-links a[data-floating='true']::before,
+.nav-links a[data-floating='true']::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 120%;
+  height: 160%;
+  transform: translate(-50%, -50%);
+  border-radius: 999px;
+  pointer-events: none;
+  opacity: 0.9;
+  z-index: -1;
+  background: radial-gradient(circle at 30% 30%, rgba(74, 222, 128, 0.35), transparent 65%);
+  animation: floatGlow 5s ease-in-out infinite;
+}
+
+.nav-links a[data-floating='true']::after {
+  top: 50%;
+  width: 80%;
+  height: 0.22rem;
+  background: linear-gradient(90deg, transparent, rgba(74, 222, 128, 0.6), transparent);
+  filter: blur(0.5px);
+  animation: floatUnderline 6s ease-in-out infinite;
+}
+
 .nav-links .active {
   color: #fff;
 }
@@ -162,6 +197,32 @@ function isActive(link: { to: string | { path: string } }) {
   50% {
     transform: scale(1.15);
     opacity: 0.6;
+  }
+}
+
+@keyframes floatGlow {
+  0%,
+  100% {
+    transform: translate(-50%, -48%) scale(0.95);
+    opacity: 0.6;
+  }
+
+  45% {
+    transform: translate(-50%, -52%) scale(1.05);
+    opacity: 1;
+  }
+}
+
+@keyframes floatUnderline {
+  0%,
+  100% {
+    transform: translate(-50%, 0) scaleX(0.7);
+    opacity: 0.4;
+  }
+
+  50% {
+    transform: translate(-50%, -0.25rem) scaleX(1.1);
+    opacity: 1;
   }
 }
 
