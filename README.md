@@ -29,6 +29,7 @@ Mocking up web app with <b>Vitesse</b><sup><em>(speed)</em></sup><br>
 
 - 新增 `/feedback` 页面，承接 GitHub Issue 与邮箱 `phasisx_pdf_pxf@163.com` 的反馈链路，视觉与首页保持同频。
 - 顶部导航包含「反馈」入口，可直接抵达该页面的核心内容区。
+- 「游戏详情」导航入口新增丝滑浮动高亮，兼顾沉浸感与易用性。
 
 ## Features
 
