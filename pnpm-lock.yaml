@@ -125,6 +125,9 @@ catalogs:
     '@vueuse/core':
       specifier: ^13.0.0
       version: 13.0.0
+    gsap:
+      specifier: ^3.12.5
+      version: 3.14.1
     nprogress:
       specifier: ^0.2.0
       version: 0.2.0
@@ -167,7 +170,7 @@ importers:
         specifier: catalog:frontend
         version: 13.0.0(vue@3.5.13(typescript@5.8.2))
       gsap:
-        specifier: ^3.12.5
+        specifier: catalog:frontend
         version: 3.14.1
       nprogress:
         specifier: catalog:frontend
