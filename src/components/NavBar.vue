@@ -5,7 +5,7 @@ const route = useRoute()
 const navLinks = [
   { label: '下载渠道', to: { path: '/', hash: '#download-area' } },
   { label: '排行榜', to: { path: '/leaderboard', hash: '#leaderboard' } },
-  { label: '玩家社区', to: { path: '/player-community', hash: '#player-community' } },
+  { label: '反馈', to: { path: '/feedback', hash: '#feedback' } },
   { label: '特别感谢', to: '/special-thanks', hash: '#special-thanks' },
 ]
 
