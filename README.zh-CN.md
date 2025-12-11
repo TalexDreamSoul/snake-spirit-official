@@ -25,6 +25,12 @@
 
 <br>
 
+## 项目进度
+
+- 重做 `special-thanks` 页面，去掉时间/标题，仅保留感谢内容并加上轻特效展示。
+
+<br>
+
 ## 特性
 
 - ⚡️ [Vue 3](https://github.com/vuejs/core), [Vite](https://github.com/vitejs/vite), [pnpm](https://pnpm.io/), [esbuild](https://github.com/evanw/esbuild) - 就是快！

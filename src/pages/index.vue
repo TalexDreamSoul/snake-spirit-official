@@ -349,6 +349,12 @@ class Rune {
     ctx.restore()
   }
 }
+
+const router = useRouter()
+
+function handleNavClick(path: string) {
+  router.push(path)
+}
 </script>
 
 <template>
@@ -364,6 +370,7 @@ class Rune {
           <a href="#download-area">下载渠道</a>
           <a href="#download-area">排行榜</a>
           <a href="#download-area">玩家社区</a>
+          <a @click="handleNavClick('/special-thanks')">特别感谢</a>
         </div>
         <button class="nav-button" type="button">
           登录测试服
