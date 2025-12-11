@@ -349,34 +349,12 @@ class Rune {
     ctx.restore()
   }
 }
-
-const router = useRouter()
-
-function handleNavClick(path: string) {
-  router.push(path)
-}
 </script>
 
 <template>
-  <main class="snake-shell">
+  <main class="snake-shell bg-black">
     <canvas ref="canvasRef" class="canvas-layer" aria-hidden="true" />
     <div class="content-layer">
-      <nav class="site-nav">
-        <div class="brand">
-          <span class="brand-icon material-symbols-outlined" aria-hidden="true">gesture</span>
-          <span class="brand-text">SNAKE<span>SPIRIT</span></span>
-        </div>
-        <div class="nav-links">
-          <a href="#download-area">下载渠道</a>
-          <a href="#download-area">排行榜</a>
-          <a href="#download-area">玩家社区</a>
-          <a @click="handleNavClick('/special-thanks')">特别感谢</a>
-        </div>
-        <button class="nav-button" type="button">
-          登录测试服
-        </button>
-      </nav>
-
       <section class="hero">
         <div class="annotation">
           <p>像画符一样操控</p>
@@ -418,6 +396,20 @@ function handleNavClick(path: string) {
             </div>
             <span class="shine" aria-hidden="true" />
           </a>
+
+          <a
+            class="cta-card zip-card"
+            href="https://github.com/pdfgame/Dual-modeSnakeGame"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <span class="material-symbols-outlined cta-icon" aria-hidden="true">download</span>
+            <div class="cta-copy">
+              <span class="cta-eyebrow">Download</span>
+              <span class="cta-title">ZIP</span>
+            </div>
+            <span class="shine" aria-hidden="true" />
+          </a>
         </div>
 
         <div class="stats-grid">
@@ -439,11 +431,6 @@ function handleNavClick(path: string) {
   </main>
 </template>
 
-<route lang="yaml">
-meta:
-  layout: home
-</route>
-
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Rajdhani:wght@500;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0');
@@ -462,7 +449,9 @@ meta:
 }
 
 .snake-shell {
-  min-height: 100vh;
+  min-height: 100%;
+  height: 100%;
+  width: 100%;
   background-color: #050505;
   color: #fff;
   font-family: 'Rajdhani', sans-serif;
@@ -473,79 +462,22 @@ meta:
 .canvas-layer {
   position: fixed;
   inset: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   z-index: 0;
   background: #050505;
 }
 
 .content-layer {
-  position: relative;
+  position: absolute;
   z-index: 1;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  min-height: 100%;
+  height: 100%;
+  width: 100%;
+  padding-top: clamp(1rem, 4vw, 2.5rem);
   padding-bottom: 3rem;
-}
-
-.site-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1.5rem clamp(1.5rem, 5vw, 3.5rem);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(8px);
-}
-
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-}
-
-.brand-icon {
-  font-size: 2.25rem;
-  color: #4ade80;
-  animation: pulse 2s infinite;
-}
-
-.brand-text span {
-  color: #4ade80;
-}
-
-.nav-links {
-  display: none;
-  gap: 2.5rem;
-  font-weight: 700;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.6);
-}
-
-.nav-links a {
-  transition: color 0.3s ease;
-}
-
-.nav-links a:hover {
-  color: #fff;
-}
-
-.nav-button {
-  padding: 0.5rem 1.75rem;
-  border: 1px solid rgba(34, 197, 94, 0.5);
-  border-radius: 999px;
-  background: transparent;
-  color: #4ade80;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  transition: all 0.3s ease;
-}
-
-.nav-button:hover {
-  background: #22c55e;
-  color: #050505;
 }
 
 .hero {
@@ -657,14 +589,15 @@ meta:
 .cta-group {
   margin-top: 3rem;
   display: flex;
-  flex-direction: column;
   align-items: center;
   gap: 1.25rem;
   position: relative;
   width: 100%;
-  max-width: 360px;
+  max-width: 720px;
   margin-left: auto;
   margin-right: auto;
+
+  flex-wrap: nowrap;
 }
 
 .cta-halo {
@@ -682,7 +615,7 @@ meta:
   align-items: center;
   justify-content: flex-start;
   gap: 1.25rem;
-  width: 100%;
+  width: 50%;
   padding: 1rem 1.25rem;
   border-radius: 1rem;
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -748,6 +681,10 @@ meta:
 
 .github-card .cta-title {
   letter-spacing: 0.15em;
+}
+
+.zip-card {
+  background: linear-gradient(120deg, rgba(25, 25, 25, 0.08), rgba(59, 130, 246, 0.1));
 }
 
 .stats-grid {
@@ -856,7 +793,6 @@ meta:
   }
 
   .cta-group {
-    flex-direction: column;
     align-items: center;
   }
 }

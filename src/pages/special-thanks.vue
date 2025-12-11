@@ -8,32 +8,30 @@ const players = ['刘欣荣', '唐子贤', '伍鑫宇', '黄俊伟', '廖子然'
     <div class="ink-splash splash-1" aria-hidden="true" />
     <div class="ink-splash splash-2" aria-hidden="true" />
 
-    <section class="thanks-card">
-      <p class="eyebrow">
-        SPECIAL THANKS
-      </p>
-      <h1>特别感谢</h1>
-      <p class="intro">
-        游戏内测时提出宝贵建议的玩家：
-      </p>
+    <div class="card-wrapper">
+      <section class="thanks-card">
+        <p class="eyebrow">
+          SPECIAL THANKS
+        </p>
+        <h1>特别感谢</h1>
+        <p class="intro">
+          游戏内测时提出宝贵建议的玩家：
+        </p>
 
-      <ul class="player-list">
-        <li v-for="player in players" :key="player">
-          <span class="player-dot" aria-hidden="true" />
-          {{ player }}
-        </li>
-      </ul>
+        <ul class="player-list">
+          <li v-for="player in players" :key="player">
+            <span class="player-dot" aria-hidden="true" />
+            {{ player }}
+          </li>
+        </ul>
 
-      <p class="outro">
-        感谢唐子贤为本游戏网页做出的巨大贡献，我们会让每一次墨迹都留在赛博卷轴上。
-      </p>
-
-      <div class="badge-row">
-        <span>Gesture Dev</span>
-        <span>Inner Testers</span>
-        <span>SnakeSpirit Crew</span>
-      </div>
-    </section>
+        <div class="badge-row">
+          <span>Gesture Dev</span>
+          <span>Inner Testers</span>
+          <span>SnakeSpirit Crew</span>
+        </div>
+      </section>
+    </div>
   </main>
 </template>
 
@@ -46,15 +44,14 @@ const players = ['刘欣荣', '唐子贤', '伍鑫宇', '黄俊伟', '廖子然'
   color: #fff;
   font-family: 'Rajdhani', sans-serif;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: clamp(2rem, 6vw, 4rem);
+  flex-direction: column;
+  padding: clamp(1.5rem, 5vw, 3.5rem);
   position: relative;
   overflow: hidden;
 }
 
 .bg-grid {
-  position: absolute;
+  position: fixed;
   inset: 0;
   background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
@@ -64,7 +61,7 @@ const players = ['刘欣荣', '唐子贤', '伍鑫宇', '黄俊伟', '廖子然'
 }
 
 .ink-splash {
-  position: absolute;
+  position: fixed;
   width: 320px;
   height: 320px;
   border-radius: 50%;
@@ -82,9 +79,19 @@ const players = ['刘欣荣', '唐子贤', '伍鑫宇', '黄俊伟', '廖子然'
 
 .splash-2 {
   background: radial-gradient(circle, rgba(236, 72, 153, 0.25), transparent 70%);
-  bottom: 5%;
-  right: 12%;
+  bottom: 8%;
+  right: 10%;
   animation-delay: 4s;
+}
+
+.card-wrapper {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 2rem;
 }
 
 .thanks-card {
@@ -159,13 +166,6 @@ h1 {
   animation: pulse 1.8s infinite;
 }
 
-.outro {
-  margin-top: 2rem;
-  font-size: 1.1rem;
-  color: rgba(255, 255, 255, 0.75);
-  line-height: 1.8;
-}
-
 .badge-row {
   margin-top: 1.5rem;
   display: flex;
@@ -180,19 +180,6 @@ h1 {
   letter-spacing: 0.25em;
   font-size: 0.75rem;
   text-transform: uppercase;
-}
-
-@keyframes pulse {
-  0%,
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-
-  50% {
-    transform: scale(1.2);
-    opacity: 0.4;
-  }
 }
 
 @keyframes drift {
@@ -220,12 +207,22 @@ h1 {
 }
 
 @media (max-width: 640px) {
+  .nav-button {
+    display: none;
+  }
+
   .player-list {
     grid-template-columns: 1fr;
   }
 
   .player-list li {
     font-size: 1.2rem;
+  }
+}
+
+@media (min-width: 960px) {
+  .nav-links {
+    display: flex;
   }
 }
 </style>
