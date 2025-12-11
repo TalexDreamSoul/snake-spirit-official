@@ -27,7 +27,15 @@
 
 ## 项目进度
 
+- 首页 ZIP 下载按钮改为读取 `VITE_ZIP_DOWNLOAD_URL`，默认回退到 GitHub Releases 最新资产，避免了 500MB 压缩包被 GitHub 拒收。
 - 抽离导航为 `NavBar` 布局，`index` 与 `special-thanks` 页面共用统一导航，保持品牌体验一致。
+
+### ZIP 下载包托管策略
+
+1. 生成或获取 `Dual-mode Snake Game.zip`，但不要将该文件提交到 Git。
+2. 把它上传到 GitHub Releases（推荐文件名保持一致）或任意可公开访问的对象存储。
+3. 在部署平台里配置 `VITE_ZIP_DOWNLOAD_URL` 指向最终下载地址，本地开发也可在 `.env` 里设置。
+4. 如果只是在本地联调，把 ZIP 放到 `public/assets/download/` 即可，`.gitignore` 会阻止它被提交。
 
 <br>
 

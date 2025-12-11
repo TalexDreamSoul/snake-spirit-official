@@ -39,6 +39,9 @@ const stats = [
   { id: 'league', value: 'TOP 1', label: '手势电竞联赛' },
 ]
 
+const zipDownloadUrl = import.meta.env.VITE_ZIP_DOWNLOAD_URL
+  ?? 'https://github.com/TalexDreamSoul/snake-spirit-official/releases/latest/download/Dual-mode%20Snake%20Game.zip'
+
 const canvasRef = ref<HTMLCanvasElement | null>(null)
 let cleanupScene: (() => void) | undefined
 
@@ -399,7 +402,7 @@ class Rune {
 
           <a
             class="cta-card zip-card"
-            href="/assets/download/Dual-mode%20Snake%20Game.zip"
+            :href="zipDownloadUrl"
             target="_blank"
             rel="noreferrer"
           >

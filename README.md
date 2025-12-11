@@ -27,12 +27,19 @@ Mocking up web app with <b>Vitesse</b><sup><em>(speed)</em></sup><br>
 
 ## Snake Spirit 现状速记
 
-- 首页 ZIP 下载按钮直连 `/assets/download/Dual-mode Snake Game.zip`，不绕 GitHub，点一下就能把包拖回本地。
+- 首页 ZIP 下载按钮读取 `VITE_ZIP_DOWNLOAD_URL`（默认指向 GitHub Releases 最新资产），仓库不再托管 500MB 压缩包，发版时把包上传到 Release Asset 即可。
 - 新增 `/feedback` 页面，承接 GitHub Issue 与邮箱 `phasisx_pdf_pxf@163.com` 的反馈链路，视觉与首页保持同频。
 - 顶部导航包含「反馈」入口，可直接抵达该页面的核心内容区。
 - 「游戏详情」导航入口新增丝滑浮动高亮，兼顾沉浸感与易用性。
 - 新增 `/details` 页面，集中展示玩法亮点、技术规格与版本里程碑，和首页视觉保持一体化。
 - `/details` 实机截图区升级为竖向整屏轮播，一屏一图当背景，滚动/按钮都能丝滑切换。
+
+### ZIP 下载包策略
+
+1. 构建或获取 `Dual-mode Snake Game.zip`，保持文件名一致但不要将其加入 Git。
+2. 上传到 GitHub Releases（推荐命名为 `Dual-mode Snake Game.zip`），或任意 CDN/对象存储并记录 URL。
+3. 在部署环境里设置 `VITE_ZIP_DOWNLOAD_URL` 指向该 URL，未配置时页面会使用 Releases 最新下载链接。
+4. 若本地调试需要把 ZIP 放进 `public/assets/download/`，仓库的 `.gitignore` 会保护它不被提交。
 
 ## Features
 
