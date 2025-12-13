@@ -108,7 +108,7 @@ const quickTips = [
   height: 320px;
   border-radius: 50%;
   filter: blur(45px);
-  opacity: 0.45;
+  opacity: 0.6;
   mix-blend-mode: screen;
   pointer-events: none;
 }

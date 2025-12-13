@@ -571,7 +571,7 @@ onBeforeUnmount(() => {
   width: 600px;
   height: 600px;
   filter: blur(120px);
-  opacity: 0.3;
+  opacity: 0.6;
   mix-blend-mode: screen;
   pointer-events: none;
   z-index: 0;

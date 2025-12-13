@@ -1,5 +1,8 @@
 <script setup lang="ts">
-const players = ['刘欣荣', '唐子贤', '伍鑫宇', '黄俊伟', '廖子然', '蔡子菱']
+// const players = ['刘欣荣', '唐子贤', '伍鑫宇', '黄俊伟', '廖子然', '蔡子菱']
+
+const test = ['刘欣荣', '伍鑫宇', '黄俊伟', '廖子然', '蔡子菱', '杨智豪']
+const image = ['伍鑫宇', '唐子贤', '蔡子菱']
 </script>
 
 <template>
@@ -8,29 +11,40 @@ const players = ['刘欣荣', '唐子贤', '伍鑫宇', '黄俊伟', '廖子然'
     <div class="ink-splash splash-1" aria-hidden="true" />
     <div class="ink-splash splash-2" aria-hidden="true" />
 
-    <div class="card-wrapper">
-      <section class="thanks-card">
+    <div class="card-wrapper flex flex-col items-center justify-center gap-8">
+      <div class="thanks-shell-headline w-full flex flex-col items-center gap-4">
         <p class="eyebrow">
           SPECIAL THANKS
         </p>
         <h1>特别感谢</h1>
-        <p class="intro">
-          游戏内测时提出宝贵建议的玩家：
-        </p>
+      </div>
 
-        <ul class="player-list">
-          <li v-for="player in players" :key="player">
-            <span class="player-dot" aria-hidden="true" />
-            {{ player }}
-          </li>
-        </ul>
+      <div class="flex items-center gap-16">
+        <section class="thanks-card">
+          <p class="intro">
+            游戏内测提出宝贵建议的玩家
+          </p>
 
-        <div class="badge-row">
-          <span>Gesture Dev</span>
-          <span>Inner Testers</span>
-          <span>SnakeSpirit Crew</span>
-        </div>
-      </section>
+          <ul class="player-list">
+            <li v-for="player in test" :key="player">
+              <span class="player-dot" aria-hidden="true" />
+              {{ player }}
+            </li>
+          </ul>
+        </section>
+        <section class="thanks-card">
+          <p class="intro">
+            参与游戏开发做出贡献的朋友
+          </p>
+
+          <ul class="player-list flex-col flex!">
+            <li v-for="player in image" :key="player">
+              <span class="player-dot" aria-hidden="true" />
+              {{ player }}
+            </li>
+          </ul>
+        </section>
+      </div>
     </div>
   </main>
 </template>
@@ -62,11 +76,11 @@ const players = ['刘欣荣', '唐子贤', '伍鑫宇', '黄俊伟', '廖子然'
 
 .ink-splash {
   position: fixed;
-  width: 320px;
-  height: 320px;
+  width: 400px;
+  height: 400px;
   border-radius: 50%;
-  filter: blur(20px);
-  opacity: 0.5;
+  filter: blur(40px);
+  opacity: 0.75;
   mix-blend-mode: screen;
   animation: float 12s ease-in-out infinite;
 }
@@ -88,15 +102,12 @@ const players = ['刘欣荣', '唐子贤', '伍鑫宇', '黄俊伟', '廖子然'
   position: relative;
   z-index: 1;
   flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   padding-bottom: 2rem;
 }
 
 .thanks-card {
   position: relative;
-  max-width: 720px;
+  max-width: 800px;
   width: 100%;
   border-radius: 2rem;
   padding: clamp(2rem, 4vw, 3rem);
@@ -143,7 +154,7 @@ h1 {
 
 .player-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
   gap: 1rem;
   list-style: none;
   padding: 2rem 0 0;

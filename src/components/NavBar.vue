@@ -135,7 +135,7 @@ function isActive(link: { to: string | { path: string } }) {
   pointer-events: none;
   opacity: 0.9;
   z-index: -1;
-  background: radial-gradient(circle at 30% 30%, rgba(74, 222, 128, 0.35), transparent 65%);
+  background: radial-gradient(circle at 30% 30%, rgba(74, 222, 128, 0.25), rgba(74, 222, 128, 0.25) 65%);
   animation: floatGlow 5s ease-in-out infinite;
 }
 

@@ -40,7 +40,7 @@ const stats = [
 ]
 
 const zipDownloadUrl = import.meta.env.VITE_ZIP_DOWNLOAD_URL
-  ?? 'https://github.com/TalexDreamSoul/snake-spirit-official/releases/latest/download/Dual-mode%20Snake%20Game.zip'
+  ?? 'https://pan.quark.cn/s/4de0417660b6'
 
 const canvasRef = ref<HTMLCanvasElement | null>(null)
 let cleanupScene: (() => void) | undefined
