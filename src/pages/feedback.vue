@@ -15,7 +15,7 @@ const quickTips = [
     <div class="laser laser-1" aria-hidden="true" />
     <div class="laser laser-2" aria-hidden="true" />
 
-    <section class="hero-card">
+    <section class="hero-card mt-auto">
       <p class="eyebrow">
         FEEDBACK
       </p>
