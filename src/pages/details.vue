@@ -386,6 +386,11 @@ onBeforeUnmount(() => {
           <img :src="shot.file" :alt="shot.label" loading="lazy">
         </figure>
       </div>
+
+      <div class="scroll-hint absolute bottom-16 op-50">
+        <span class="material-symbols-outlined">keyboard_double_arrow_down</span>
+        <span>向下滚动</span>
+      </div>
     </section>
 
     <!-- 规格与路线图全屏 -->
