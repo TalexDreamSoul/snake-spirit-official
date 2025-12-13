@@ -693,6 +693,11 @@ class Rune {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1.25rem;
   opacity: 0.8;
+
+  /* width: 100%;
+  max-width: 720px; */
+
+  /* justify-content: space-between; */
 }
 
 .stat-card {
@@ -700,6 +705,8 @@ class Rune {
 }
 
 .stat-value {
+  letter-spacing: 0.125rem;
+  color: #4ade80;
   font-size: 2rem;
   font-weight: 800;
 }

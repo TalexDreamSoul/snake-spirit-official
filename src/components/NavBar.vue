@@ -42,7 +42,7 @@ function isActive(link: { to: string | { path: string } }) {
           :key="link.label"
           :to="link.to"
           :class="{ active: isActive(link) }"
-          :data-floating="link.label === '游戏详情' ? 'true' : null"
+          :data-floating="isActive(link) ? 'true' : null"
         >
           {{ link.label }}
         </RouterLink>
@@ -54,7 +54,7 @@ function isActive(link: { to: string | { path: string } }) {
         :disabled="isHome"
         @click="handleNavButtonClick"
       >
-        {{ isHome ? "登录测试服" : "返回主界面" }}
+        {{ isHome ? "加入我们" : "返回主界面" }}
       </button>
     </nav>
   </div>
@@ -153,6 +153,8 @@ function isActive(link: { to: string | { path: string } }) {
 }
 
 .nav-button {
+  z-index: 1;
+  cursor: pointer;
   padding: 0.45rem 1.5rem;
   border: 1px solid rgba(34, 197, 94, 0.5);
   border-radius: 999px;
