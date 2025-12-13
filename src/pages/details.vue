@@ -119,6 +119,7 @@ function initGsapAnimations() {
       const shotText = section.querySelector('.shot-text')
       const shotFigure = section.querySelector('.shot-figure')
       const shotBg = section.querySelector('.shot-bg')
+      const shotWrapper = section.querySelector('.shot-wrapper')
       const shotIndex = section.querySelector('.shot-index')
 
       // 创建 timeline
@@ -153,7 +154,7 @@ function initGsapAnimations() {
       // 图片从右侧滑入 + 缩放
       if (shotFigure) {
         tl.from(shotFigure, {
-          x: 100,
+          // x: 100,
           opacity: 0,
           scale: 0.9,
           duration: 1,
@@ -164,7 +165,16 @@ function initGsapAnimations() {
       // 背景渐显 + 轻微放大
       if (shotBg) {
         tl.from(shotBg, {
-          scale: 1.3,
+          scale: 1.25,
+          opacity: 0,
+          duration: 1.2,
+          ease: 'power1.out',
+        }, 0)
+      }
+
+      if (shotWrapper) {
+        tl.from(shotWrapper, {
+          scale: 0.95,
           opacity: 0,
           duration: 1.2,
           ease: 'power1.out',
@@ -338,7 +348,6 @@ onBeforeUnmount(() => {
       </div>
     </section>
 
-    <!-- 每张截图独立全屏 -->
     <section
       v-for="(shot, index) in screenshots"
       :key="shot.id"
@@ -348,7 +357,10 @@ onBeforeUnmount(() => {
       :style="{ '--shot-bg': `url(${shot.file})` }"
     >
       <div class="shot-bg" aria-hidden="true" />
-      <div class="shot-overlay" aria-hidden="true" />
+      <!-- <div class="shot-overlay" aria-hidden="true" /> -->
+
+      <div class="halo halo-green absolute! op-60!" aria-hidden="true" />
+      <div class="halo halo-pink absolute! op-60!" aria-hidden="true" />
 
       <div class="shot-content">
         <div class="shot-text">
@@ -360,15 +372,17 @@ onBeforeUnmount(() => {
           <div class="shot-nav">
             <button v-if="index > 0" class="nav-btn" @click="scrollToSection(index - 1)">
               <span class="material-symbols-outlined">arrow_upward</span>
-              上一屏
             </button>
             <button v-if="index < screenshots.length - 1" class="nav-btn primary" @click="scrollToSection(index + 1)">
               <span class="material-symbols-outlined">arrow_downward</span>
-              下一屏
             </button>
           </div>
         </div>
         <figure class="shot-figure">
+          <div class="shot-wrapper">
+            <div class="shot-wrapper-bg" />
+            <div class="shot-wrapper-shadow" />
+          </div>
           <img :src="shot.file" :alt="shot.label" loading="lazy">
         </figure>
       </div>
@@ -431,6 +445,118 @@ onBeforeUnmount(() => {
   overflow-x: hidden;
 }
 
+/**
+ * `@property` is required for the animation to work.
+ * Without it, the angle values won’t interpolate properly.
+ *
+ * @see https://dev.to/afif/we-can-finally-animate-css-gradient-kdk
+ */
+@property --angle {
+  inherits: false;
+  initial-value: 0deg;
+  syntax: '<angle>';
+}
+
+/**
+ * To animate the gradient, we set the custom property to 1 full
+ * rotation. The animation starts at the default value of `0deg`.
+ */
+@keyframes spin {
+  to {
+    --angle: 360deg;
+  }
+}
+
+.shot-wrapper {
+  z-index: -1;
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  border-radius: 24px;
+
+  /* overflow: hidden; */
+}
+
+@keyframes rainbow-border {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.shot-wrapper-bg {
+  position: absolute;
+  padding: 0.125rem;
+
+  --dis: 0rem;
+
+  top: var(--dis);
+  left: var(--dis);
+
+  width: calc(100% - calc(var(--dis) * 2));
+  height: calc(100% - calc(var(--dis) * 2));
+
+  border-radius: 24px;
+  background: linear-gradient(
+    135deg,
+    #ff6b6b 0%,
+    #feca57 17%,
+    #48dbfb 34%,
+    #ff9ff3 51%,
+    #54a0ff 68%,
+    #5f27cd 85%,
+    #ff6b6b 100%
+  );
+  background-size: 300% 300%;
+  animation: rainbow-border 4s ease infinite;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.shot-wrapper-shadow {
+  z-index: 1;
+  content: '';
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  border-radius: 24px;
+  background: linear-gradient(
+    135deg,
+    #ff6b6b 0%,
+    #feca57 17%,
+    #48dbfb 34%,
+    #ff9ff3 51%,
+    #54a0ff 68%,
+    #5f27cd 85%,
+    #ff6b6b 100%
+  );
+  background-size: 300% 300%;
+  animation: rainbow-border 4s ease infinite;
+  pointer-events: none;
+
+  filter: blur(12px);
+
+  transform: scale(1);
+}
 /* ========== 基础容器 ========== */
 .details-shell {
   position: relative;
@@ -475,6 +601,13 @@ onBeforeUnmount(() => {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+
+  opacity: 0;
+  transition: all 0.3s ease;
+
+  &:hover {
+    opacity: 1;
+  }
 }
 
 .side-nav button {
@@ -715,7 +848,7 @@ onBeforeUnmount(() => {
 /* ========== 截图全屏区块 ========== */
 .shot-screen {
   position: relative;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 .shot-bg {
@@ -725,7 +858,7 @@ onBeforeUnmount(() => {
   background-size: cover;
   background-position: center;
   filter: blur(80px) saturate(1.2);
-  opacity: 0.25;
+  opacity: 0.125;
   transform: scale(1.1);
   transition: opacity 0.8s ease;
 }
@@ -761,7 +894,7 @@ onBeforeUnmount(() => {
   font-size: clamp(4rem, 10vw, 8rem);
   font-weight: 700;
   letter-spacing: 0.1em;
-  color: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.2);
   line-height: 1;
 }
 
@@ -823,6 +956,8 @@ onBeforeUnmount(() => {
 .shot-figure {
   margin: 0;
   position: relative;
+  transform-origin: center;
+  transition: transform 0.6s ease;
 }
 
 .shot-figure::before {
@@ -840,10 +975,9 @@ onBeforeUnmount(() => {
   border-radius: 1.5rem;
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 40px 100px rgba(0, 0, 0, 0.5);
-  transition: transform 0.6s ease;
 }
 
-.shot-screen.active .shot-figure img {
+.shot-screen.active .shot-figure {
   transform: scale(1.02);
 }
 
