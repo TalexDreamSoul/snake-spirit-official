@@ -25,24 +25,31 @@ const highlights = [
 ]
 
 const specs = [
-  { name: '客户端包体', value: 'Windows 11 / macOS 12.4+' },
-  { name: '推荐设备', value: '8GB 内存' },
-  { name: '帧率档位', value: '60 / 90 / 120 FPS 自适应' },
+  { name: 'pygame', value: '' },
+  { name: 'opencv', value: '' },
+  { name: 'numpy', value: '' },
+  { name: 'pillow', value: '' },
+  { name: 'cvzone', value: '' },
+  { name: 'mediapipe', value: '' },
+  { name: 'protobuf', value: '' },
+  { name: 'requests', value: '' },
 ]
 
 const milestones = [
-  { phase: 'ALPHA', badge: '完成', detail: '完成基本功能' },
-  { phase: 'BETA', badge: '当前', detail: '限量邀测，持续收集玩法与性能反馈。' },
-  { phase: 'LAUNCH', badge: '待定', detail: '完善新需求' },
-]
+  { phase: 'ALPHA', badge: '完成', detail: '基本功能' },
+  { phase: 'BETA', badge: '进行中', detail: '限量内测，持续收集玩法与性能反馈' },
+  { phase: 'LAUNCH', badge: '进行中', detail: '持续迭代' },
+].reverse()
 
 const screenshots = [
-  { id: 'classic', file: '/assets/screenshots/classic.png', label: 'Classic 竞技场', desc: '标准蛇道 + 影位标尺，一眼看到每一次攻防。' },
-  { id: 'colorful', file: '/assets/screenshots/colorful.jpg', label: 'Colorful 主题', desc: '自定义着色器，整场比赛跟你喜好的滤镜联动。' },
-  { id: 'game_index', file: '/assets/screenshots/game_index.jpg', label: 'Index 面板', desc: '简约模式面板，手势提示和经典模式简约指向。' },
-  { id: 'game_setting', file: '/assets/screenshots/game_setting.png', label: 'Setting 中心', desc: '个性化配置、游戏模式、语言设置一屏搞定。' },
-  { id: 'gesture', file: '/assets/screenshots/gesture.png', label: 'Gesture 训练', desc: '分轨练习手势操作，实时纠正偏移和延迟。' },
-  { id: 'language', file: '/assets/screenshots/language.png', label: 'Language 切换', desc: '多语言 + 字体包极速切换，快速切换不掉线。' },
+  { id: 'loading', file: '/assets/screenshots/loading.png', label: 'Loading', desc: '独创游戏加载动画\n炫酷粒子特效' },
+  { id: 'modes', file: '/assets/screenshots/modes.png', label: 'Modes', desc: '简约面板 自选游戏模式' },
+  { id: 'classic', file: '/assets/screenshots/classic.png', label: 'Classic', desc: '简约经典模式\n可自行切换背景图' },
+  { id: 'gesture', file: '/assets/screenshots/gesture.png', label: 'Gesture', desc: '创新性手势控制模式\n用你的双手创造轨迹' },
+  { id: 'language', file: '/assets/screenshots/language.png', label: 'Language', desc: '支持全局中英文无缝切换' },
+  { id: 'colorful', file: '/assets/screenshots/colorful.jpg', label: 'Colorful', desc: '根据你的喜好自定义颜色\n<span style="font-size: 28px;opacity: 0.75">更多颜色敬请期待</span>' },
+  { id: 'gesture_modes', file: '/assets/screenshots/gesture_modes.png', label: 'GestureModes', desc: '自定义手势控制模式画面设置\n保护您的隐私' },
+  { id: 'game_setting', file: '/assets/screenshots/game_setting.png', label: 'Setting', desc: '按ESC快速调出丰富游戏设置\n<span style="font-size: 28px;opacity: 0.75">更多设置敬请期待。</span>' },
 ]
 
 const activeShot = ref(0)
@@ -262,9 +269,9 @@ onBeforeUnmount(() => {
         </p>
         <h1>Snake Spirit</h1>
         <p class="lede">
-          这是一个专门为指向式手势打造的贪吃蛇。<br>
-          经典玩法 · 手势玩法 双重来袭，<br>
-          下载即刻进入全速进状态。
+          基于Pygame和opencv打造的新型贪吃蛇小游戏<br>
+          经典玩法 手势玩法 双重来袭<br>
+          立即下载游玩！
         </p>
 
         <div class="stats">
@@ -273,7 +280,7 @@ onBeforeUnmount(() => {
               累计修复
             </p>
             <p class="stat-value">
-              120+
+              100+
             </p>
             <p class="stat-desc">
               Bugs
@@ -284,7 +291,7 @@ onBeforeUnmount(() => {
               累计完善
             </p>
             <p class="stat-value">
-              80+
+              20+
             </p>
             <p class="stat-desc">
               Issue / 邮件
@@ -292,10 +299,10 @@ onBeforeUnmount(() => {
           </div>
           <div class="stat">
             <p class="stat-label">
-              平均启动
+              平均响应
             </p>
             <p class="stat-value">
-              23ms
+              1s
             </p>
             <p class="stat-desc">
               全链路监控
@@ -349,9 +356,7 @@ onBeforeUnmount(() => {
           <p class="shot-label">
             {{ shot.label }}
           </p>
-          <h2 class="shot-title">
-            {{ shot.desc }}
-          </h2>
+          <h2 class="shot-title" v-html="shot.desc.replace('\n', '<br />')" />
           <div class="shot-nav">
             <button v-if="index > 0" class="nav-btn" @click="scrollToSection(index - 1)">
               <span class="material-symbols-outlined">arrow_upward</span>
@@ -375,14 +380,17 @@ onBeforeUnmount(() => {
         <article class="spec-card">
           <header>
             <p class="tag">
-              TECH STACK
+              REQUIREMENTS
             </p>
-            <h2>核心规格</h2>
+            <h2>核心依赖</h2>
           </header>
           <dl>
             <div v-for="spec in specs" :key="spec.name" class="spec-row">
+              <div class="phase-line">
+                <span class="dot" />
+              </div>
               <dt>{{ spec.name }}</dt>
-              <dd>{{ spec.value }}</dd>
+              <!-- <dd>{{ spec.value }}</dd> -->
             </div>
           </dl>
         </article>
@@ -392,7 +400,7 @@ onBeforeUnmount(() => {
             <p class="tag">
               ROADMAP
             </p>
-            <h2>版本节奏</h2>
+            <h2>版本迭代</h2>
           </header>
           <ul>
             <li v-for="milestone in milestones" :key="milestone.phase">
@@ -868,13 +876,17 @@ onBeforeUnmount(() => {
 
 dl {
   margin: 0;
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
 }
 
 .spec-row {
   display: flex;
-  flex-direction: column;
-  padding: 1rem 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 0.25rem 0;
+
+  align-items: center;
+  /* border-bottom: 1px solid rgba(255, 255, 255, 0.06); */
 }
 
 .spec-row:last-child {
@@ -882,16 +894,16 @@ dl {
 }
 
 dt {
-  font-size: 0.8rem;
+  font-size: 1.75rem;
   letter-spacing: 0.3em;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.85);
 }
 
-dd {
+/* dd {
   margin: 0.5rem 0 0;
   font-size: 1.1rem;
   color: #f8fafc;
-}
+} */
 
 .timeline-card ul {
   list-style: none;

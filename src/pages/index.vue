@@ -34,9 +34,9 @@ interface Segment {
 }
 
 const stats = [
-  { id: 'players', value: '10M+', label: '全球指划玩家' },
-  { id: 'rating', value: '4.9', label: '平均评分' },
-  { id: 'league', value: 'TOP 1', label: '手势电竞联赛' },
+  { id: 'players', value: '10M+', label: '创意玩法' },
+  { id: 'rating', value: '4.9', label: 'GitHub开源' },
+  { id: 'league', value: 'TOP 1', label: '硬件交互' },
 ]
 
 const zipDownloadUrl = import.meta.env.VITE_ZIP_DOWNLOAD_URL
@@ -377,10 +377,7 @@ class Rune {
         </div>
 
         <p class="intro">
-          <span class="highlight">蛇灵 SnakeSpirit</span> 把传统贪吃蛇撕得粉碎。
-          依托手势识别 AI 引擎，你只需在空气中勾勒线条， 就能驱动一条带有<span
-            class="highlight"
-          >赛博墨迹</span>的灵蛇在无限画布中穿梭。 手感像写毛笔，速度却能冲进全球排行榜。
+          <span class="highlight">蛇灵 SnakeSpirit</span> 创新性地将经典贪吃蛇游戏内核与硬件交互技术深度融合，既在传统模式中迭代优化核心玩法机制，又在手势控制模式中构建沉浸式操作体验 —— 用户仅需通过简单的手势动作，即可操控蛇身移动，实现游戏交互与硬件操作的无缝衔接。
         </p>
 
         <div id="download-area" class="cta-group">
@@ -392,7 +389,7 @@ class Rune {
             target="_blank"
             rel="noreferrer"
           >
-            <span class="cta-icon material-symbols-outlined" aria-hidden="true">download</span>
+            <span class="material-symbols-outlined cta-icon" aria-hidden="true">download</span>
             <div class="cta-copy">
               <span class="cta-eyebrow">Download on</span>
               <span class="cta-title">GitHub</span>
@@ -417,10 +414,10 @@ class Rune {
 
         <div class="stats-grid">
           <div v-for="stat in stats" :key="stat.id" class="stat-card">
-            <div class="stat-value">
+            <!-- <div class="stat-value">
               {{ stat.value }}
-            </div>
-            <div class="stat-label">
+            </div> -->
+            <div class="stat-value">
               {{ stat.label }}
             </div>
           </div>
