@@ -44,7 +44,7 @@ const milestones = [
 const screenshots = [
   { id: 'loading', file: '/assets/screenshots/loading.png', label: 'Loading', desc: '独创游戏加载动画\n炫酷粒子特效' },
   { id: 'modes', file: '/assets/screenshots/modes.png', label: 'Modes', desc: '简约面板 自选游戏模式' },
-  { id: 'classic', file: '/assets/screenshots/classic.png', label: 'Classic', desc: '简约经典模式\n可自行切换背景图' },
+  { id: 'classic', file: '/assets/screenshots/classic.png', label: 'Classic', desc: '简约经典模式\n可自行切换背景图<span style="font-size: 12px;opacity: 0.5">(开发中)</span>' },
   { id: 'gesture', file: '/assets/screenshots/gesture.png', label: 'Gesture', desc: '创新性手势控制模式\n用你的双手创造轨迹' },
   { id: 'language', file: '/assets/screenshots/language.png', label: 'Language', desc: '支持全局中英文无缝切换' },
   { id: 'colorful', file: '/assets/screenshots/colorful.jpg', label: 'Colorful', desc: '根据你的喜好自定义颜色\n<span style="font-size: 28px;opacity: 0.75">更多颜色敬请期待</span>' },
