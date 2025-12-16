@@ -40,7 +40,7 @@ const stats = [
 ]
 
 const zipDownloadUrl = import.meta.env.VITE_ZIP_DOWNLOAD_URL
-  ?? 'https://pan.quark.cn/s/4de0417660b6'
+  ?? 'https://pan.quark.cn/s/60231d866efb'
 
 const canvasRef = ref<HTMLCanvasElement | null>(null)
 let cleanupScene: (() => void) | undefined
@@ -389,7 +389,7 @@ class Rune {
             target="_blank"
             rel="noreferrer"
           >
-            <span class="material-symbols-outlined cta-icon" aria-hidden="true">download</span>
+            <span class="cta-icon material-symbols-outlined" aria-hidden="true">download</span>
             <div class="cta-copy">
               <span class="cta-eyebrow">Download on</span>
               <span class="cta-title">GitHub</span>
