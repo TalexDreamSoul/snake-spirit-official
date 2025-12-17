@@ -28,7 +28,7 @@ Mocking up web app with <b>Vitesse</b><sup><em>(speed)</em></sup><br>
 ## Snake Spirit 现状速记
 
 - 首页 ZIP 下载按钮读取 `VITE_ZIP_DOWNLOAD_URL`（默认指向 GitHub Releases 最新资产），仓库不再托管 500MB 压缩包，发版时把包上传到 Release Asset 即可。
-- 新增 `/feedback` 页面，承接 GitHub Issue 与邮箱 `phasisx_pdf_pxf@163.com` 的反馈链路，视觉与首页保持同频。
+- 新增 `/feedback` 页面，承接 GitHub Issue 与邮箱 `paxfen@163.com` 的反馈链路，视觉与首页保持同频。
 - 顶部导航包含「反馈」入口，可直接抵达该页面的核心内容区。
 - 「游戏详情」导航入口新增丝滑浮动高亮，兼顾沉浸感与易用性。
 - 新增 `/details` 页面，集中展示玩法亮点、技术规格与版本里程碑，和首页视觉保持一体化。

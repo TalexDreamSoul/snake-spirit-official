@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const githubIssueUrl = 'https://github.com/TalexDreamSoul/snake-spirit-official/issues'
-const emailAddress = 'phasisx_pdf_pxf@163.com'
+const emailAddress = 'paxfen@163.com'
 
 const quickTips = [
   '一句话写清问题 + 设备/版本。',
