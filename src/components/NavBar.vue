@@ -29,7 +29,7 @@ function isActive(link: { to: string | { path: string } }) {
 </script>
 
 <template>
-  <div class="nav-layout" :class="{ 'absolute w-full': !isHome }">
+  <div class="nav-layout fixed top-0 z-100" :class="{ 'absolute w-full': !isHome }">
     <nav class="site-nav">
       <div class="brand cursor-pointer" @click="router.push('/')">
         <span class="brand-icon material-symbols-outlined" aria-hidden="true">gesture</span>
