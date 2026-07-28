@@ -17,8 +17,9 @@ function goHome() {
 
 function handleNavButtonClick() {
   if (isHome.value)
-    return
-  goHome()
+    router.push('/team')
+  else
+    goHome()
 }
 
 function isActive(link: { to: string | { path: string } }) {
@@ -153,7 +154,7 @@ function isActive(link: { to: string | { path: string } }) {
 }
 
 .nav-button {
-  z-index: 1;
+  z-index: 10;
   cursor: pointer;
   padding: 0.45rem 1.5rem;
   border: 1px solid rgba(34, 197, 94, 0.5);
